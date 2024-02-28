@@ -1,0 +1,108 @@
+<ItemWalletInfo>
+    orientation: "vertical"
+    MDLabel:
+        text:root.number
+        size_hint_y: None
+        height: self.texture_size[1]
+    MDLabel:
+        text:root.address
+        size_hint_y: None
+        height: self.texture_size[1]
+    MDLabel:
+        text:root.private_key
+        size_hint_y: None
+        height: self.texture_size[1]
+    MDLabel:
+        text:root.mnemonic_phrase
+        size_hint_y: None
+        height: self.texture_size[1]
+
+<CreatWalletScreenView>
+    md_bg_color: (1, 1, 1)
+
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            type: "small"
+            pos_hint: {"center_x": .5, "top": 1}
+
+            MDTopAppBarLeadingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "menu"
+                    on_release: app.nav_drawer_open()
+
+            MDTopAppBarTitle:
+                text: "Генерация кошельков"
+                pos_hint: {"center_x": .5}
+
+            MDTopAppBarTrailingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "account-circle-outline"
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: 0
+            RecycleView:
+                id: wallets_list
+                viewclass: "ItemWalletInfo"
+
+                RecycleBoxLayout:
+                    orientation: 'vertical'
+                    spacing: "16dp"
+                    padding: "16dp"
+                    default_size: None, dp(100)
+                    default_size_hint: 1, None
+                    size_hint_y: None
+                    height: self.minimum_height
+        MDFloatLayout:
+            adaptive_height: True
+            pos_hint: {'top': 0}
+            MDBoxLayout:
+                spacing: dp(20)
+                padding: dp(5)
+
+                MDTextField:
+                    id: number_of_wallets
+                    input_filter: 'int'
+                    mode: "filled"
+                    on_text: root.set_number_of_wallets(int(self.text or 0))
+                    MDTextFieldHintText:
+                        text: "Количество кошельков"
+                        text_color_normal: "brown"
+
+                # MDTextField:
+                #     id: len_seed_phrase
+                #     mode: "filled"
+                #     on_text: root.set_len_seed_phrase(self.focus, int(self.text or 0))
+                #     MDTextFieldHintText:
+                #         text: "Количество мемо слов"
+                #         text_color_normal: "brown"
+
+                MDDropDownItem:
+
+                    on_release: root.open_len_seed_phrase(self)
+
+                    MDDropDownItemText:
+                        id: len_seed_phrase
+                        text: "Количество мемо слов"
+                MDButton:
+                    pos_hint: {'right': 1}
+                    theme_shadow_color: "Custom"
+                    shadow_color: "black"
+                    on_release: root.generate_wallets()
+
+                    MDButtonText:
+                        text: "Генерация"
+                        theme_text_color: "Custom"
+                        text_color: "black"
+                MDButton:
+                    pos_hint: {'right': 1}
+                    theme_shadow_color: "Custom"
+                    shadow_color: "black"
+                    on_release: root.save_wallets()
+
+                    MDButtonText:
+                        text: "сохранить"
+                        theme_text_color: "Custom"
+                        text_color: "black"

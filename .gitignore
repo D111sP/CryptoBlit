@@ -1,0 +1,12 @@
+# PyCharm project files
+.idea/
+
+# Distribution / packaging
+dist/
+build/
+
+# Python byte-compile cache
+__pycache__/
+
+# Specific files
+test.py

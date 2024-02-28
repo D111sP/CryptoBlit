@@ -1,0 +1,57 @@
+<MainScreenView>
+    md_bg_color: (1, 1, 1)
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            type: "small"
+            pos_hint: {"center_x": .5, "top": 1}
+
+            MDTopAppBarLeadingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "menu"
+                    on_release: app.nav_drawer_open()
+
+            MDTopAppBarTitle:
+                text: "Главная Страница"
+                pos_hint: {"center_x": .5}
+
+            MDTopAppBarTrailingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "account-circle-outline"
+        MDScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                padding: "24dp"
+                spacing: "12dp"
+
+                # Заголовок и информация о проекте
+                MDLabel:
+                    text: "О проекте"
+                    font_style: "Headline"
+                    role: "large"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: "Цель данного проекта облегчить криптовальные движения."
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                # Инструкции для пользователя о том, что делать при обнаружении бага
+                MDLabel:
+                    text: "Нашли баг?"
+                    font_style: "Headline"
+                    role: "large"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: "Если вы нашли баг, пожалуйста, сообщите. Ваша помощь очень важна для нас!"
+                    theme_text_color: "Secondary"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    markup: True
